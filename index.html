@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HustleHub - Student Side Hustle Marketplace for South African Universities">
+  <title>Student Sphere - Turn Your Skills Into Income</title>
+  
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Toast Container -->
+  <div id="toastContainer" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="index.html">
+        <i class="bi bi-cash-coin"></i> Student Sphere
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="browse.html">Browse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="create-service.html">Post Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-light btn-sm ms-2" href="signup.html">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section d-flex align-items-center" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&h=1080&fit=crop');">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+          <h1 class="display-3 fw-bold text-white mb-4">Turn Your Skills Into Income</h1>
+          <p class="lead text-white mb-5">Connect with students across SA campuses</p>
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+            <a href="signup.html" class="btn btn-light btn-lg px-5 btn-hover">Get Started</a>
+            <a href="browse.html" class="btn btn-outline-light btn-lg px-5 btn-hover">Browse Services</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">How It Works</h2>
+      <div class="row g-4">
+        <div class="col-md-4 text-center">
+          <div class="mb-3">
+            <i class="bi bi-person-plus-fill text-primary" style="font-size: 3rem;"></i>
+          </div>
+          <h4 class="fw-bold">1. Sign Up</h4>
+          <p class="text-muted">Create your free account with your university email</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="mb-3">
+            <i class="bi bi-megaphone-fill text-primary" style="font-size: 3rem;"></i>
+          </div>
+          <h4 class="fw-bold">2. Post or Browse</h4>
+          <p class="text-muted">Offer your services or find what you need</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="mb-3">
+            <i class="bi bi-cash-stack text-primary" style="font-size: 3rem;"></i>
+          </div>
+          <h4 class="fw-bold">3. Earn Money</h4>
+          <p class="text-muted">Connect via WhatsApp and start earning</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Popular Categories</h2>
+      <div class="row g-4">
+        <div class="col-6 col-md-3">
+          <a href="browse.html?category=tutoring" class="text-decoration-none">
+            <div class="card text-center p-4 category-card border-0 shadow-sm">
+              <i class="bi bi-book-fill text-primary mb-3" style="font-size: 3rem;"></i>
+              <h5 class="fw-bold text-dark">Tutoring</h5>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="browse.html?category=tech" class="text-decoration-none">
+            <div class="card text-center p-4 category-card border-0 shadow-sm">
+              <i class="bi bi-laptop-fill text-primary mb-3" style="font-size: 3rem;"></i>
+              <h5 class="fw-bold text-dark">Tech</h5>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="browse.html?category=beauty" class="text-decoration-none">
+            <div class="card text-center p-4 category-card border-0 shadow-sm">
+              <i class="bi bi-scissors text-primary mb-3" style="font-size: 3rem;"></i>
+              <h5 class="fw-bold text-dark">Beauty</h5>
+            </div>
+          </a>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="browse.html?category=food" class="text-decoration-none">
+            <div class="card text-center p-4 category-card border-0 shadow-sm">
+              <i class="bi bi-basket-fill text-primary mb-3" style="font-size: 3rem;"></i>
+              <h5 class="fw-bold text-dark">Food</h5>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Services -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Featured Services</h2>
+      <div id="featuredServicesContainer"></div>
+      <div class="text-center mt-4">
+        <a href="browse.html" class="btn btn-primary btn-lg btn-hover">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-5 stats-section">
+    <div class="container">
+      <div class="row text-center text-white">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="stat-number">500+</div>
+          <div class="stat-label">Active Students</div>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="stat-number">R50k+</div>
+          <div class="stat-label">Total Earnings</div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Universities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Student Sphere -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Why Student Sphere?</h2>
+      <div class="row g-4">
+        <div class="col-md-3 col-sm-6 text-center">
+          <i class="bi bi-shield-check text-primary mb-3" style="font-size: 2.5rem;"></i>
+          <h5 class="fw-bold">Verified Students</h5>
+          <p class="text-muted">All users verified with university emails</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center">
+          <i class="bi bi-lightning-charge text-primary mb-3" style="font-size: 2.5rem;"></i>
+          <h5 class="fw-bold">Quick Connect</h5>
+          <p class="text-muted">Instant WhatsApp contact with sellers</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center">
+          <i class="bi bi-wallet2 text-primary mb-3" style="font-size: 2.5rem;"></i>
+          <h5 class="fw-bold">Flexible Payment</h5>
+          <p class="text-muted">Cash, EFT, or card - your choice</p>
+        </div>
+        <div class="col-md-3 col-sm-6 text-center">
+          <i class="bi bi-people text-primary mb-3" style="font-size: 2.5rem;"></i>
+          <h5 class="fw-bold">Student Community</h5>
+          <p class="text-muted">Support fellow students across SA</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-custom py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">
+            <i class="bi bi-cash-coin"></i> Student Sphere
+          </h5>
+          <p class="text-white-50">Empowering South African students to monetize their skills and connect with their campus community.</p>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="browse.html" class="text-white-50 text-decoration-none">Browse Services</a></li>
+            <li><a href="create-service.html" class="text-white-50 text-decoration-none">Post a Service</a></li>
+            <li><a href="login.html" class="text-white-50 text-decoration-none">Login</a></li>
+            <li><a href="signup.html" class="text-white-50 text-decoration-none">Sign Up</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Connect</h5>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white fs-4"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4 bg-white opacity-25">
+      <div class="text-center text-white-50">
+        <p class="mb-0">&copy; 2024 Student Sphere. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/auth.js"></script>
+  
+  <!-- Page-specific JavaScript -->
+  <script>
+    // Load featured services on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      loadFeaturedServices();
+      updateNavbarAuth();
+    });
+  </script>
+</body>
+</html>
