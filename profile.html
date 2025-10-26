@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your Student Sphere Profile">
+  <title>Profile - Student Sphere</title>
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Toast Container -->
+  <div id="toastContainer" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-4" href="index.html">
+        <i class="bi bi-cash-coin"></i> Student Sphere
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="browse.html">Browse</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="create-service.html">Post Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="profile.html">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-light btn-sm ms-2" href="signup.html">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile Header -->
+  <section class="gradient-bg py-5 text-white">
+    <div class="container text-center">
+      <img 
+        id="profileAvatar" 
+        src="https://ui-avatars.com/api/?name=Demo+User&background=667eea&color=fff&size=120" 
+        alt="Profile" 
+        class="rounded-circle mb-3 border border-4 border-white shadow"
+        width="120" 
+        height="120">
+      <h2 class="fw-bold mb-2" id="profileName">Demo User</h2>
+      <p class="mb-3" id="profileUniversity">
+        <i class="bi bi-mortarboard me-2"></i>
+        <span>University of Cape Town</span>
+      </p>
+      <div class="d-flex justify-content-center gap-2 mb-3">
+        <span class="badge bg-light text-dark">
+          <i class="bi bi-patch-check-fill text-primary"></i> Verified
+        </span>
+      </div>
+      <button class="btn btn-light btn-sm btn-hover" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+        <i class="bi bi-pencil me-2"></i> Edit Profile
+      </button>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="bg-white shadow-sm py-4">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-4">
+          <div class="fw-bold fs-4 text-primary" id="servicesCount">3</div>
+          <div class="text-muted small">Services Posted</div>
+        </div>
+        <div class="col-4">
+          <div class="fw-bold fs-4 text-success" id="totalEarnings">R2,500</div>
+          <div class="text-muted small">Total Earnings</div>
+        </div>
+        <div class="col-4">
+          <div class="fw-bold fs-4 text-warning">
+            <i class="bi bi-star-fill"></i> <span id="userRating">4.8</span>
+          </div>
+          <div class="text-muted small">Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="py-5 bg-light">
+    <div class="container">
+      <!-- Tabs -->
+      <ul class="nav nav-tabs mb-4" id="profileTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="services-tab" data-bs-toggle="tab" data-bs-target="#services" type="button" role="tab">
+            <i class="bi bi-grid me-2"></i> My Services
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">
+            <i class="bi bi-star me-2"></i> Reviews
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab">
+            <i class="bi bi-gear me-2"></i> Settings
+          </button>
+        </li>
+      </ul>
+
+      <!-- Tab Content -->
+      <div class="tab-content" id="profileTabContent">
+        <!-- My Services Tab -->
+        <div class="tab-pane fade show active" id="services" role="tabpanel">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold mb-0">My Services</h3>
+            <a href="create-service.html" class="btn btn-primary btn-hover">
+              <i class="bi bi-plus-circle me-2"></i> Add New Service
+            </a>
+          </div>
+          
+          <div id="myServicesContainer" class="row">
+            <!-- User's services will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Reviews Tab -->
+        <div class="tab-pane fade" id="reviews" role="tabpanel">
+          <h3 class="fw-bold mb-4">Reviews Received</h3>
+          <div id="reviewsContainer">
+            <!-- Reviews will be loaded here -->
+          </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-pane fade" id="settings" role="tabpanel">
+          <h3 class="fw-bold mb-4">Account Settings</h3>
+          
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                  <h5 class="fw-bold mb-3">Contact Information</h5>
+                  <div class="mb-3">
+                    <label class="form-label fw-semibold">Email</label>
+                    <input type="email" class="form-control" value="demo@university.ac.za" readonly>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label fw-semibold">WhatsApp Number</label>
+                    <div class="input-group">
+                      <span class="input-group-text">+27</span>
+                      <input type="tel" class="form-control" value="821234567" id="settingsPhone">
+                    </div>
+                  </div>
+                  <button class="btn btn-primary btn-hover" onclick="updateContactInfo()">
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+              
+              <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                  <h5 class="fw-bold mb-3 text-danger">Danger Zone</h5>
+                  <p class="text-muted">Once you delete your account, there is no going back.</p>
+                  <button class="btn btn-outline-danger" onclick="confirmDeleteAccount()">
+                    <i class="bi bi-trash me-2"></i> Delete Account
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Edit Profile Modal -->
+  <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="editProfileModalLabel">Edit Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editProfileForm">
+            <div class="mb-3">
+              <label for="editName" class="form-label fw-semibold">Full Name</label>
+              <input type="text" class="form-control" id="editName" value="Demo User">
+            </div>
+            <div class="mb-3">
+              <label for="editUniversity" class="form-label fw-semibold">University</label>
+              <select class="form-select" id="editUniversity">
+                <option value="University of Cape Town" selected>University of Cape Town</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editBio" class="form-label fw-semibold">Bio</label>
+              <textarea class="form-control" id="editBio" rows="3" placeholder="Tell us about yourself..."></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-custom py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">
+            <i class="bi bi-cash-coin"></i> Student Sphere
+          </h5>
+          <p class="text-white-50">Empowering South African students to monetize their skills and connect with their campus community.</p>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="browse.html" class="text-white-50 text-decoration-none">Browse Services</a></li>
+            <li><a href="create-service.html" class="text-white-50 text-decoration-none">Post a Service</a></li>
+            <li><a href="login.html" class="text-white-50 text-decoration-none">Login</a></li>
+            <li><a href="signup.html" class="text-white-50 text-decoration-none">Sign Up</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Connect</h5>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-white fs-4"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-white fs-4"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white fs-4"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-white fs-4"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4 bg-white opacity-25">
+      <div class="text-center text-white-50">
+        <p class="mb-0">&copy; 2024 Student Sphere. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5.3 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/auth.js"></script>
+  
+  <!-- Page-specific JavaScript -->
+  <script>
+    // Load user's services
+    function loadMyServices() {
+      const container = document.getElementById('myServicesContainer');
+      
+      // Get user's services (first 3 demo services for demo purposes)
+      const userServices = demoServices.slice(0, 3);
+      
+      if (userServices.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <i class="bi bi-inbox" style="font-size: 4rem; color: #dee2e6;"></i>
+            <p class="text-muted mt-3">You haven't posted any services yet.</p>
+            <a href="create-service.html" class="btn btn-primary btn-hover">Post Your First Service</a>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = userServices.map(service => `
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="position-relative">
+              <img src="${service.imageUrl}" class="card-img-top service-card-img" alt="${service.title}">
+              <span class="badge ${getCategoryBadgeClass(service.category)} position-absolute top-0 start-0 m-2">
+                ${capitalize(service.category)}
+              </span>
+              <div class="position-absolute top-0 end-0 m-2">
+                <button class="btn btn-sm btn-light me-1" onclick="editService('${service.id}')" title="Edit">
+                  <i class="bi bi-pencil"></i>
+                </button>
+                <button class="btn btn-sm btn-danger" onclick="deleteService('${service.id}')" title="Delete">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title line-clamp-2">${service.title}</h5>
+              <p class="card-text text-muted line-clamp-2">${service.description}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price-display">${formatPrice(service.price)}</div>
+                <a href="service-detail.html?id=${service.id}" class="btn btn-sm btn-primary">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Load reviews
+    function loadReviews() {
+      const container = document.getElementById('reviewsContainer');
+      
+      if (demoReviews.length === 0) {
+        container.innerHTML = '<p class="text-muted">No reviews yet.</p>';
+        return;
+      }
+      
+      container.innerHTML = demoReviews.map(review => `
+        <div class="card border-0 shadow-sm mb-3">
+          <div class="card-body">
+            <div class="d-flex align-items-start gap-3">
+              <img src="${review.reviewerAvatar}" alt="${review.reviewerName}" class="rounded-circle" width="48" height="48">
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-bold">${review.reviewerName}</span>
+                  <small class="text-muted">${review.date}</small>
+                </div>
+                <div class="mb-2">
+                  ${renderStarRating(review.rating)}
+                </div>
+                <p class="mb-0">${review.comment}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Edit service
+    function editService(serviceId) {
+      showToast('Edit functionality would open a form to edit service ' + serviceId, 'info');
+    }
+    
+    // Delete service
+    function deleteService(serviceId) {
+      if (confirm('Are you sure you want to delete this service?')) {
+        showToast('Service deleted successfully', 'success');
+        loadMyServices();
+      }
+    }
+    
+    // Save profile
+    function saveProfile() {
+      const name = document.getElementById('editName').value;
+      const university = document.getElementById('editUniversity').value;
+      
+      document.getElementById('profileName').textContent = name;
+      document.querySelector('#profileUniversity span').textContent = university;
+      
+      // Close modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById('editProfileModal'));
+      modal.hide();
+      
+      showToast('Profile updated successfully', 'success');
+    }
+    
+    // Update contact info
+    function updateContactInfo() {
+      showToast('Contact information updated successfully', 'success');
+    }
+    
+    // Confirm delete account
+    function confirmDeleteAccount() {
+      if (confirm('Are you absolutely sure? This action cannot be undone.')) {
+        showToast('Account deletion requested. You will be logged out.', 'error');
+        setTimeout(() => {
+          handleLogout();
+        }, 2000);
+      }
+    }
+    
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user is logged in (for demo, we'll allow access)
+      const user = getCurrentUser();
+      if (user) {
+        document.getElementById('profileName').textContent = user.name;
+        if (user.university) {
+          document.querySelector('#profileUniversity span').textContent = user.university;
+        }
+      }
+      
+      loadMyServices();
+      loadReviews();
+      updateNavbarAuth();
+      
+      // Populate university dropdown in edit modal
+      const editUniversitySelect = document.getElementById('editUniversity');
+      universities.forEach(uni => {
+        const option = document.createElement('option');
+        option.value = uni;
+        option.textContent = uni;
+        editUniversitySelect.appendChild(option);
+      });
+    });
+  </script>
+</body>
+</html>
