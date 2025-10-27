@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Verification</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border-left: 4px solid #ccc;
+    }
+    .test.pass {
+      border-left-color: #28a745;
+    }
+    .test.fail {
+      border-left-color: #dc3545;
+    }
+    .status {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    .pass .status { color: #28a745; }
+    .fail .status { color: #dc3545; }
+    h1 { color: #333; }
+    code {
+      background: #f4f4f4;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Setup Verification</h1>
+  <p>This page checks if all files are loaded correctly.</p>
+  
+  <div id="results"></div>
+  
+  <!-- Load JavaScript files -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/auth.js"></script>
+  
+  <script>
+    const results = document.getElementById('results');
+    
+    function addTest(name, passed, message) {
+      const div = document.createElement('div');
+      div.className = `test ${passed ? 'pass' : 'fail'}`;
+      div.innerHTML = `
+        <span class="status">${passed ? 'PASS' : 'FAIL'}</span>
+        <strong>${name}</strong>
+        <br>
+        <small>${message}</small>
+      `;
+      results.appendChild(div);
+    }
+    
+    // Test 1: Check if demoServices exists
+    try {
+      if (typeof demoServices !== 'undefined' && Array.isArray(demoServices)) {
+        addTest('Demo Services', true, `Found ${demoServices.length} services in data.js`);
+      } else {
+        addTest('Demo Services', false, 'demoServices is not defined - data.js not loaded');
+      }
+    } catch (e) {
+      addTest('Demo Services', false, `Error: ${e.message}`);
+    }
+    
+    // Test 2: Check if universities exists
+    try {
+      if (typeof universities !== 'undefined' && Array.isArray(universities)) {
+        addTest('Universities', true, `Found ${universities.length} universities in data.js`);
+      } else {
+        addTest('Universities', false, 'universities is not defined - data.js not loaded');
+      }
+    } catch (e) {
+      addTest('Universities', false, `Error: ${e.message}`);
+    }
+    
+    // Test 3: Check if categories exists
+    try {
+      if (typeof categories !== 'undefined' && Array.isArray(categories)) {
+        addTest('Categories', true, `Found ${categories.length} categories in data.js`);
+      } else {
+        addTest('Categories', false, 'categories is not defined - data.js not loaded');
+      }
+    } catch (e) {
+      addTest('Categories', false, `Error: ${e.message}`);
+    }
+    
+    // Test 4: Check if utility functions exist
+    try {
+      if (typeof formatPrice === 'function') {
+        const testPrice = formatPrice(150);
+        addTest('Utility Functions', true, `formatPrice() works: ${testPrice}`);
+      } else {
+        addTest('Utility Functions', false, 'formatPrice is not defined - utils.js not loaded');
+      }
+    } catch (e) {
+      addTest('Utility Functions', false, `Error: ${e.message}`);
+    }
+    
+    // Test 5: Check if service functions exist
+    try {
+      if (typeof loadServices === 'function') {
+        addTest('Service Functions', true, 'loadServices() function exists');
+      } else {
+        addTest('Service Functions', false, 'loadServices is not defined - services.js not loaded');
+      }
+    } catch (e) {
+      addTest('Service Functions', false, `Error: ${e.message}`);
+    }
+    
+    // Test 6: Check if populateUniversityDropdown exists
+    try {
+      if (typeof populateUniversityDropdown === 'function') {
+        addTest('Dropdown Functions', true, 'populateUniversityDropdown() function exists');
+      } else {
+        addTest('Dropdown Functions', false, 'populateUniversityDropdown is not defined - services.js not loaded');
+      }
+    } catch (e) {
+      addTest('Dropdown Functions', false, `Error: ${e.message}`);
+    }
+    
+    // Test 7: Check if initializeFilters exists
+    try {
+      if (typeof initializeFilters === 'function') {
+        addTest('Filter Functions', true, 'initializeFilters() function exists');
+      } else {
+        addTest('Filter Functions', false, 'initializeFilters is not defined - services.js not loaded');
+      }
+    } catch (e) {
+      addTest('Filter Functions', false, `Error: ${e.message}`);
+    }
+    
+    // Test 8: Check if auth functions exist
+    try {
+      if (typeof getCurrentUser === 'function') {
+        addTest('Auth Functions', true, 'getCurrentUser() function exists');
+      } else {
+        addTest('Auth Functions', false, 'getCurrentUser is not defined - auth.js not loaded');
+      }
+    } catch (e) {
+      addTest('Auth Functions', false, `Error: ${e.message}`);
+    }
+    
+    // Test 9: Check Bootstrap
+    try {
+      if (typeof bootstrap !== 'undefined') {
+        addTest('Bootstrap JS', true, 'Bootstrap JavaScript loaded from CDN');
+      } else {
+        addTest('Bootstrap JS', false, 'Bootstrap not loaded - check CDN connection');
+      }
+    } catch (e) {
+      addTest('Bootstrap JS', false, `Error: ${e.message}`);
+    }
+    
+    // Summary
+    setTimeout(() => {
+      const allTests = document.querySelectorAll('.test');
+      const passed = document.querySelectorAll('.test.pass').length;
+      const failed = document.querySelectorAll('.test.fail').length;
+      
+      const summary = document.createElement('div');
+      summary.style.cssText = 'margin-top: 30px; padding: 20px; background: #333; color: white; border-radius: 8px; text-align: center;';
+      summary.innerHTML = `
+        <h2 style="margin: 0 0 10px 0;">Summary</h2>
+        <p style="margin: 0; font-size: 18px;">
+          <strong>${passed}</strong> passed, <strong>${failed}</strong> failed
+        </p>
+        ${failed === 0 ? '<p style="color: #28a745; margin: 10px 0 0 0;">All tests passed! Your setup is correct.</p>' : '<p style="color: #dc3545; margin: 10px 0 0 0;">Some tests failed. Check the errors above.</p>'}
+      `;
+      results.appendChild(summary);
+    }, 100);
+  </script>
+</body>
+</html>
