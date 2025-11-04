@@ -1,4 +1,4 @@
-# Student Sphere Web App 
+# Student Sphere Web App (FNB Hackathon Project 2025) 
 
 **A peer-to-peer marketplace connecting students across South African universities**
 
